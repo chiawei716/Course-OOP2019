@@ -1,0 +1,17 @@
+*.sln
+
+*.exe
+
+*.ilk
+
+*.pdb
+
+*.vcxproj
+
+*.vcxproj.filters
+
+*.vcxproj.user
+
+Debug/
+
+.vs/
