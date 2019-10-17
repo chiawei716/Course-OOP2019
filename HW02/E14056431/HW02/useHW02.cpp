@@ -65,14 +65,13 @@ int main()
 	cout << "\nFind the closest point \nWith original tree: ";
 	cout << tree1->findClosestPoint(input) << endl;
 	
-
+	// Copy the tree, and delete the old one
 	QuadtreeNode* tree2 = new QuadtreeNode(*tree1);
 	delete tree1;
 
 	// Find with original tree
 	cout << "With copied tree:   ";
 	cout << tree2->findClosestPoint(input) << endl << endl;
-
 
 	system("pause");
 	return 0;

@@ -4,12 +4,16 @@
 
 #include "HW02.h"
 
+/*class Point*/
+
+// <Constructor> Default (0, 0)
 Point::Point() 
 {
 	x = 0;
 	y = 0;
 }
 
+// <Constructor> Custom x & y
 Point::Point(float x, float y)
 {
 	this->x = x;
@@ -20,12 +24,14 @@ Point::~Point()
 {
 }
 
+// Set data
 void Point::Set_data(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 }
 
+// Operator[]
 float Point::operator[](int index)const
 {
 	if (index == 0) return x;
@@ -33,6 +39,7 @@ float Point::operator[](int index)const
 	return -1;
 }
 
+// Operator>>
 std::istream& operator>>(std::istream& in, Point& pt)
 {
 	float x, y;
@@ -41,6 +48,7 @@ std::istream& operator>>(std::istream& in, Point& pt)
 	return in;
 }
 
+// Operator<<
 std::ostream& operator<<(std::ostream& out, const Point& pt)
 {
 	out << std::fixed << std::setprecision(3) << "("  << pt[0] << ", " << pt[1] << ")";
@@ -48,7 +56,10 @@ std::ostream& operator<<(std::ostream& out, const Point& pt)
 }
 
 
+
 /*class QuadtreeNode*/
+
+// <Constructor> with three parameter
 QuadtreeNode::QuadtreeNode(const Point& data, const Point& separate_point, const float size)
 	: separate_point(separate_point), size(size)
 {
@@ -57,6 +68,7 @@ QuadtreeNode::QuadtreeNode(const Point& data, const Point& separate_point, const
 	this->data = new Point(data);
 }
 
+// <Constructor> tree copy
 QuadtreeNode::QuadtreeNode(const QuadtreeNode& tree) : separate_point(tree.getSeparatePt()), size(tree.getSize())
 {
 	if (tree.ifData())
@@ -71,6 +83,7 @@ QuadtreeNode::QuadtreeNode(const QuadtreeNode& tree) : separate_point(tree.getSe
 			this->nextNode[i] = nullptr;
 }
 
+// Delete the whole tree
 QuadtreeNode::~QuadtreeNode()
 {
 	if(this->data != nullptr)
@@ -80,13 +93,14 @@ QuadtreeNode::~QuadtreeNode()
 			delete this->nextNode[i];
 }
 
+// Insert a point to the right position
 void QuadtreeNode::InsertPoint(const Point& pt)
 {
 	// If the node is the end of a branch, copy itself downward
-	if (ifLeaf(this)) {
-		this->nextNode[getQuadrant(*(this->data), this->separate_point)] = new QuadtreeNode(
+	if (this->ifLeaf()) {
+		this->nextNode[this->getQuadrant(*(this->data))] = new QuadtreeNode(
 			*(this->data),
-			nextSeparatePt(this->separate_point, this->size, getQuadrant(*(this->data), this->separate_point)),
+			this->nextSeparatePt(this->getQuadrant(*(this->data))),
 			(this->size) / 2
 		);
 		delete this->data;
@@ -94,7 +108,7 @@ void QuadtreeNode::InsertPoint(const Point& pt)
 	}
 
 	// Decide where to insert the next point
-	int nextQuad = getQuadrant(pt, this->separate_point);
+	int nextQuad = this->getQuadrant(pt);
 
 	// If next node is already built, pass it down
 	if (this->nextNode[nextQuad] != nullptr)
@@ -103,7 +117,7 @@ void QuadtreeNode::InsertPoint(const Point& pt)
 	else {
 		this->nextNode[nextQuad] = new QuadtreeNode(
 			pt,
-			nextSeparatePt(this->separate_point, this->size, nextQuad),
+			nextSeparatePt(nextQuad),
 			this->size / 2
 		);
 		return;
@@ -111,68 +125,15 @@ void QuadtreeNode::InsertPoint(const Point& pt)
 	return;
 }
 
-// Get position of next separate point
-Point QuadtreeNode::nextSeparatePt(const Point& pt, float size, int quadrant)
-{
-	Point result;
-	switch (quadrant)
-	{
-	case 0:
-		result.Set_data(pt[0] + size / 4.0f, pt[1] + size / 4.0f);
-		break;
-	case 1:
-		result.Set_data(pt[0] - size / 4.0f, pt[1] + size / 4.0f);
-		break;
-	case 2:
-		result.Set_data(pt[0] - size / 4.0f, pt[1] - size / 4.0f);
-		break;
-	case 3:
-		result.Set_data(pt[0] + size / 4.0f, pt[1] - size / 4.0f);
-		break;
-	default:
-		break;
-	}
-	return result;
-}
-
-// Get which quadrant a point belongs to
-int QuadtreeNode::getQuadrant(const Point& pt, const Point& spt)const
-{
-	if (spt[0] >= pt[0]) 
-	{
-		if (spt[1] <= pt[1])
-			return 1;
-		else
-			return 2;
-	}
-	else
-	{
-		if (spt[1] <= pt[1])
-			return 0;
-		else
-			return 3;
-	}
-}
-
-// Check if a node has no child
-bool QuadtreeNode::ifLeaf(const QuadtreeNode* node)
-{
-	for (int i = 0; i < 4; i++)
-		if (node->nextNode[i] != nullptr)
-			return false;
-	return true;
-}
-
 // Find the closest point by tree
-Point QuadtreeNode::findClosestPoint(const Point& pt)const 
+Point QuadtreeNode::findClosestPoint(const Point& pt)const
 {
-
 	// Decide which quadrant we need to look into
-	int next = getQuadrant(pt, this->separate_point);
-	
+	int next = getQuadrant(pt);
+
 	// If there's no closer point, return current point
 	if (this->nextNode[next] == nullptr)
-		if(this->data != nullptr)
+		if (this->data != nullptr)
 			return *(this->data);
 		else
 		{
@@ -188,6 +149,70 @@ Point QuadtreeNode::findClosestPoint(const Point& pt)const
 	// Or pass it down
 	else
 		return this->nextNode[next]->findClosestPoint(pt);
+}
+
+// Get position of next separate point
+Point QuadtreeNode::nextSeparatePt(int quadrant)
+{
+	Point result;
+	switch (quadrant)
+	{
+	case 0:
+		result.Set_data(
+			this->separate_point[0] + this->size / 4.0f, 
+			this->separate_point[1] + this->size / 4.0f
+		);
+		break;
+	case 1:
+		result.Set_data(
+			this->separate_point[0] - this->size / 4.0f, 
+			this->separate_point[1] + this->size / 4.0f
+		);
+		break;
+	case 2:
+		result.Set_data(
+			this->separate_point[0] - this->size / 4.0f, 
+			this->separate_point[1] - this->size / 4.0f
+		);
+		break;
+	case 3:
+		result.Set_data(
+			this->separate_point[0] + this->size / 4.0f, 
+			this->separate_point[1] - this->size / 4.0f
+		);
+		break;
+	default:
+		break;
+	}
+	return result;
+}
+
+// Get which quadrant a point belongs to
+int QuadtreeNode::getQuadrant(const Point& pt)const
+{
+	if (this->separate_point[0] >= pt[0]) 
+	{
+		if (this->separate_point[1] <= pt[1])
+			return 1;
+		else
+			return 2;
+	}
+	else
+	{
+		if (this->separate_point[1] <= pt[1])
+			return 0;
+		else
+			return 3;
+	}
+}
+
+// Check if a node has no child
+bool QuadtreeNode::ifLeaf()
+{
+	for (int i = 0; i < 4; i++)
+		if (this->nextNode[i] != nullptr)
+			return false;
+	return true;
 }
 
 Point QuadtreeNode::getSeparatePt()const
