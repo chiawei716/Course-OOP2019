@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>850</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>761</width>
+      <height>842</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>761</width>
+      <height>842</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="pacman_b">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>60</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PACMAN_B</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pacman">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>130</y>
+       <width>81</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PACMAN</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="blinky">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>200</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BLINKY</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="blinky_b">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>270</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BLINKY_B</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pinky">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>330</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PINKY</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pinky_b">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>400</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PINKY_B</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inky_b">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>540</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>INKY_B</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inky">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>470</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>INKY</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="clyde">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>610</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CLYDE</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="clyde_b">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>680</y>
+       <width>91</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CLYDE_B</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="DashBoard_title">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>0</y>
+      <width>171</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>SCORE:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DashBoard_score">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>70</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>35</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="win">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>771</width>
+      <height>852</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>100</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>WIN</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lose">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>771</width>
+      <height>852</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>100</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>LOSE</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Start">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>380</y>
+      <width>200</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>StartNewGame</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Count_down">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>650</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Highscore_score">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>200</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>35</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Highscore_title">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>130</y>
+      <width>171</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>HIGH SCORE:</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
