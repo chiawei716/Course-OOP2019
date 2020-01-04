@@ -289,7 +289,6 @@ bool MainWindow::colliding(){
         }
         else return true;
     }
-
     return false;
 }
 
@@ -462,5 +461,32 @@ void MainWindow::on_Start_clicked()
 
 MainWindow::~MainWindow()
 {
+    delete Pacman_ch;
+    delete Blinky_ch;
+    delete Pinky_ch;
+    delete Inky_ch;
+    delete Clyde_ch;
+
+    for(int j = 0; j < 29; ++j)
+    {
+        for(int i = 0; i < 26; ++i)
+        {
+            delete dots_map[j][i];
+        }
+        delete[] dots_map[j];
+        delete[] dots[j];
+    }
+    delete[] dots_map;
+    delete[] dots;
+
+    delete pacmantimer;
+    delete ghost_slow_timer;
+    delete ghost_normal_timer;
+    delete one_sec;
+    
+    delete painter;
+    delete qBrush;
+
+    delete scene;
     delete ui;
 }

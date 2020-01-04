@@ -8,10 +8,9 @@ Character::Character(int x, int y, QLabel *character,QGraphicsItem *parent)
     this->y = y;
 }
 
-//Update the position of the characters' pictures
+//Update characters' pictures
 void Character::rendering(QLabel *character, QLabel *character_b){
 
-    //Set the position of the character itself
     character->setGeometry(x-10, y-10, 50, 50);
 
     //If out of the border, set the second picture

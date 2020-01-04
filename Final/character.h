@@ -23,6 +23,9 @@ class Character : public QWidget
     Q_OBJECT
 
 public:
+    int x, y;
+    int direction;
+
     Character();
     Character(int x, int y, QLabel *character, QGraphicsItem *parent = nullptr);
     void rendering(QLabel* label1, QLabel* label2);
@@ -31,9 +34,6 @@ public:
     virtual bool move(Character* pacman = nullptr) = 0;
     virtual bool direction_controlled(QChar key, Character* pacman = nullptr, Character* ghost = nullptr) = 0;
     virtual void pic_change() = 0;
-
-    int x, y;   //position
-    int direction;
 
     //For pacman only
     virtual void button_update(int button){;} 
@@ -44,7 +44,6 @@ public:
     int revive = -1;
 
 protected:
-
     QMovie* animate;
 
 };
