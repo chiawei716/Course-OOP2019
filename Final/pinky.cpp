@@ -7,7 +7,7 @@ Pinky::Pinky(int x, int y, QLabel *character, QGraphicsItem *parent) : Character
     //Start countdown for first created
     start = 244;
 
-    animate = new QMovie(":/img/pinky_left.gif");
+    animate = new QMovie("./res/pinky_left.gif");
     character->setMovie(animate);
     animate->setScaledSize(QSize(50, 50));
     animate -> start();
@@ -20,19 +20,19 @@ void Pinky::pic_change(){
     animate->stop();
 
     //Default picture
-    animate -> setFileName(":/img/pinky_left.gif");
+    animate -> setFileName("./res/pinky_left.gif");
 
     //Change the GIF file
     if(direction == X_NEGATIVE)
-        animate -> setFileName(":/img/pinky_left.gif");
+        animate -> setFileName("./res/pinky_left.gif");
     else if(direction == X_POSITIVE)
-        animate -> setFileName(":/img/pinky_right.gif");
+        animate -> setFileName("./res/pinky_right.gif");
     //frightened mode
     if(scared > 0)
-        animate -> setFileName(":/img/ghost_scared.gif");
+        animate -> setFileName("./res/ghost_scared.gif");
     //reviving mode
     if(revive > 81)
-        animate -> setFileName(":/img/ghost_revive.gif");
+        animate -> setFileName("./res/ghost_revive.gif");
 
     //Restart the QMovie
     animate->start();

@@ -6,7 +6,7 @@ Pacman::Pacman(int x, int y, QLabel *character,QGraphicsItem *parent) : Characte
     direction = X_POSITIVE;
     button_state = NOTHING_PRESSED;
 
-    animate = new QMovie(":/img/pacman_moving_rightward.gif");
+    animate = new QMovie("./res/pacman_moving_rightward.gif");
     character->setMovie(animate);
     animate->setScaledSize(QSize(50, 50));
     animate -> start();
@@ -268,13 +268,13 @@ void Pacman::pic_change(){
 
     //Change the GIF file according to direction
     if(direction == X_NEGATIVE)
-        animate -> setFileName(":/img/pacman_moving_leftward.gif");
+        animate -> setFileName("./res/pacman_moving_leftward.gif");
     else if(direction == X_POSITIVE)
-        animate -> setFileName(":/img/pacman_moving_rightward.gif");
+        animate -> setFileName("./res/pacman_moving_rightward.gif");
     else if(direction == Y_NEGATIVE)
-        animate -> setFileName(":/img/pacman_moving_upward.gif");
+        animate -> setFileName("./res/pacman_moving_upward.gif");
     else if(direction == Y_POSITIVE)
-        animate -> setFileName(":/img/pacman_moving_downward.gif");
+        animate -> setFileName("./res/pacman_moving_downward.gif");
 
     //Restart the QMovie
     animate->start();
