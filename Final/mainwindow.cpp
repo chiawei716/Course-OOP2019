@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     //background rendering
-    QPixmap background(":/img/map.png");
+    QPixmap background("./res/map.png");
     scene -> addPixmap(background.scaled(759, 840));    //27:30
 
     //elements rendering
@@ -89,7 +89,7 @@ void MainWindow::Count_down(){
 void MainWindow::dots_ini(){
 
     //Read the map from the map
-    QFile dots_map_f(":/data/dots.txt");
+    QFile dots_map_f("./res/dots.txt");
     dots_map_f.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&dots_map_f);
     QChar temp;
@@ -130,7 +130,7 @@ void MainWindow::dots_ini(){
 //Have the dots on the defalut dots_map shown
 void MainWindow::Dots_reset(){
     //Read the map from the map
-    QFile dots_map_f(":/data/dots.txt");
+    QFile dots_map_f("./res/dots.txt");
     dots_map_f.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&dots_map_f);
     QChar temp;
